@@ -27,9 +27,8 @@ docker-compose run --rm wrk -t4 -c100 -d20s --latency http://go/hello-world > re
 
 ### Apache Bench:
 
-![bar-graph.png](apache-bench-result.png)
+![bar-graph.png](results/image-apache-bench-result.png)
 
 ### Wrk Result:
 
-![wrk-result.png](wrk-result.png)
->>>>>>> Stashed changes
+![wrk-result.png](results/image-wrk-result.png)
