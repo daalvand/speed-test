@@ -1,0 +1,13 @@
+FROM mysql:8.0.29
+
+ARG UID=1000
+ARG GID=${UID}
+
+RUN groupmod -g $GID mysql
+RUN usermod -u $UID mysql
+
+RUN mkdir -p /var/lib/mysql /var/run/mysqld
+
+RUN chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
+
+USER mysql

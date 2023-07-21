@@ -1,0 +1,13 @@
+Running 20s test @ http://react-php/hello-world
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     5.81ms    1.45ms  77.30ms   91.47%
+    Req/Sec     4.34k   387.70     5.15k    71.88%
+  Latency Distribution
+     50%    5.52ms
+     75%    6.11ms
+     90%    7.03ms
+     99%    9.30ms
+  345416 requests in 20.05s, 44.14MB read
+Requests/sec:  17230.28
+Transfer/sec:      2.20MB

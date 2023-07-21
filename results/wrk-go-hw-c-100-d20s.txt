@@ -1,0 +1,13 @@
+Running 20s test @ http://go/hello-world
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     6.84ms   12.80ms 168.48ms   90.31%
+    Req/Sec    10.21k     2.82k   35.18k    69.39%
+  Latency Distribution
+     50%    2.11ms
+     75%    7.18ms
+     90%   19.15ms
+     99%   64.05ms
+  812272 requests in 20.09s, 99.15MB read
+Requests/sec:  40440.86
+Transfer/sec:      4.94MB

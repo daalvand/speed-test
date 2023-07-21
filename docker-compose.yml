@@ -1,0 +1,86 @@
+version: "3.10"
+networks:
+  SpeedTest:
+    name: SpeedTest
+    driver: bridge
+services:
+  pure-php:
+    image: php:8.2
+    container_name: SpeedTestPurePHP
+    working_dir: /app
+    networks:
+      - SpeedTest
+    expose:
+      - "80"
+    volumes:
+      - ./pure-php:/app
+    restart: unless-stopped
+    command: [ 'php', '-S', '0.0.0.0:80' ]
+  swoole-php:
+    image: phpswoole/swoole:5.0-php8.2
+    container_name: SpeedTestSwoolePHP
+    working_dir: /app
+    expose:
+      - "80"
+    networks:
+      - SpeedTest
+    volumes:
+      - ./swoole-php:/app
+    restart: unless-stopped
+    command: [ 'php', 'index.php' ]
+  react-php:
+    image: php:8.2
+    container_name: SpeedTestReactPHP
+    working_dir: /app
+    networks:
+      - SpeedTest
+    expose:
+      - "80"
+    volumes:
+      - ./react-php:/app
+    restart: unless-stopped
+    command: [ 'php', 'index.php' ]
+  nodejs:
+    image: node:18
+    container_name: SpeedTestNodeJS
+    working_dir: /app
+    expose:
+      - "80"
+    volumes:
+      - ./nodejs:/app
+    restart: unless-stopped
+    command: [ 'node', 'index.js' ]
+    networks:
+      - SpeedTest
+  go:
+    image: golang:1.20.6
+    container_name: SpeedTestGO
+    working_dir: /app
+    expose:
+      - "80"
+    volumes:
+      - ./go:/app
+    restart: unless-stopped
+    command: [ 'go', 'run', 'index.go' ]
+    networks:
+      - SpeedTest
+  ab:
+    build:
+      dockerfile: AlpineDockerfile
+    container_name: SpeedTestAB
+    networks:
+      - SpeedTest
+    entrypoint:
+      - ab
+    profiles:
+      - donotstart
+  wrk:
+    build:
+      dockerfile: AlpineDockerfile
+    container_name: SpeedTestWRK
+    networks:
+      - SpeedTest
+    entrypoint:
+      - wrk
+    profiles:
+      - donotstart

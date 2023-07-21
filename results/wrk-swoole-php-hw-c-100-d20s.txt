@@ -1,0 +1,13 @@
+Running 20s test @ http://swoole-php/hello-world
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.75ms    1.01ms  24.70ms   87.55%
+    Req/Sec     9.19k     1.30k   12.17k    66.75%
+  Latency Distribution
+     50%    2.55ms
+     75%    3.03ms
+     90%    3.44ms
+     99%    6.71ms
+  732944 requests in 20.07s, 115.33MB read
+Requests/sec:  36525.60
+Transfer/sec:      5.75MB

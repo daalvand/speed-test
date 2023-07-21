@@ -1,0 +1,13 @@
+{
+  "name": "daalvand/react-php",
+  "authors": [
+    {
+      "name": "Mehdi",
+      "email": "mdaalvand@gmail.com"
+    }
+  ],
+  "require": {
+    "react/event-loop": "^1.4",
+    "react/http": "^1.9"
+  }
+}
