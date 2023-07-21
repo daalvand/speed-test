@@ -2,6 +2,10 @@
 
 ## Run Hello World
 
+```shell
+docker-compose up -d
+```
+
 ## requests
 ```shell
 #hello world
