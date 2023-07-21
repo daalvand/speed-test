@@ -2,6 +2,18 @@
 
 ## Run Hello World
 
+### build 
+```shell
+docker-compose build
+```
+
+### install dependencies
+```shell
+docker-compose run --rm nodejs npm install 
+docker-compose run --rm react-php composer install
+```
+
+### start services
 ```shell
 docker-compose up -d
 ```

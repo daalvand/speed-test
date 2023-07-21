@@ -5,7 +5,9 @@ networks:
     driver: bridge
 services:
   pure-php:
-    image: php:8.2
+    build:
+      context: .
+      dockerfile: PHPDockerfile
     container_name: SpeedTestPurePHP
     working_dir: /app
     networks:
@@ -17,7 +19,9 @@ services:
     restart: unless-stopped
     command: [ 'php', '-S', '0.0.0.0:80' ]
   swoole-php:
-    image: phpswoole/swoole:5.0-php8.2
+    build:
+      context: .
+      dockerfile: PHPDockerfile
     container_name: SpeedTestSwoolePHP
     working_dir: /app
     expose:
@@ -29,7 +33,9 @@ services:
     restart: unless-stopped
     command: [ 'php', 'index.php' ]
   react-php:
-    image: php:8.2
+    build:
+      context: .
+      dockerfile: PHPDockerfile
     container_name: SpeedTestReactPHP
     working_dir: /app
     networks:
