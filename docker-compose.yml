@@ -46,6 +46,34 @@ services:
       - ./react-php:/app
     restart: unless-stopped
     command: [ 'php', 'index.php' ]
+  laravel:
+    build:
+      context: .
+      dockerfile: PHPDockerfile
+    container_name: SpeedTestLaravel
+    working_dir: /app
+    networks:
+      - SpeedTest
+    expose:
+      - "80"
+    volumes:
+      - ./laravel:/app
+    restart: unless-stopped
+    command: [ 'php', 'artisan', 'serve', '--port=80' ]
+  laravel-octane:
+    build:
+      context: .
+      dockerfile: PHPDockerfile
+    container_name: SpeedTestLaravelOctane
+    working_dir: /app
+    networks:
+      - SpeedTest
+    expose:
+      - "80"
+    volumes:
+      - ./laravel:/app
+    restart: unless-stopped
+    command: [ 'php', 'artisan', 'octane:start', '--port=80' ]
   nodejs:
     image: node:18
     container_name: SpeedTestNodeJS
