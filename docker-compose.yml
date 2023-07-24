@@ -59,7 +59,7 @@ services:
     volumes:
       - ./laravel:/app
     restart: unless-stopped
-    command: [ 'php', 'artisan', 'serve', '--port=80' ]
+    command: [ 'php', 'artisan', 'serve', '--host=0.0.0.0', '--port=80' ]
   laravel-octane:
     build:
       context: .
@@ -73,7 +73,7 @@ services:
     volumes:
       - ./laravel:/app
     restart: unless-stopped
-    command: [ 'php', 'artisan', 'octane:start', '--port=80' ]
+    command: [ 'php', 'artisan', 'octane:start', '--host=0.0.0.0', '--port=80' ]
   nodejs:
     image: node:18
     container_name: SpeedTestNodeJS
