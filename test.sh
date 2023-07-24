@@ -12,15 +12,15 @@ docker-compose build ab wrk &&
 
 # Dependency installation
 docker-compose run --rm nodejs npm install &&
-docker-compose run --rm react-php composer install -o --no-dev &&
+docker-compose run --rm react-php composer install -o &&
 cp laravel/.env.example laravel/.env &&
-docker-compose run --rm laravel composer install -o --no-dev &&
+docker-compose run --rm laravel composer install -o &&
 docker-compose run --rm laravel php artisan key:generate
 docker-compose run --rm laravel php artisan optimize &&
-
+docker-compose run --rm yii composer install -o &&
 docker-compose up -d
 
-services=("swoole-php" "pure-php" "react-php" "laravel" "laravel-octane" "nodejs" "go")
+services=("swoole-php" "pure-php" "react-php" "laravel" "laravel-octane" "yii" "nodejs" "go")
 
 for service in "${services[@]}"; do
     echo "AB Test For: ${service}..."

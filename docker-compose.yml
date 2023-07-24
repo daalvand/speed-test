@@ -74,6 +74,20 @@ services:
       - ./laravel:/app
     restart: unless-stopped
     command: [ 'php', 'artisan', 'octane:start', '--host=0.0.0.0', '--port=80' ]
+  yii:
+    build:
+      context: .
+      dockerfile: PHPDockerfile
+    container_name: SpeedTestYii
+    working_dir: /app
+    networks:
+      - SpeedTest
+    expose:
+      - "80"
+    volumes:
+      - ./yii:/app
+    restart: unless-stopped
+    command: [ 'php', 'yii', 'serve', '0.0.0.0', '--port=80' ]
   nodejs:
     image: node:18
     container_name: SpeedTestNodeJS
