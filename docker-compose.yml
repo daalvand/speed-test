@@ -15,7 +15,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./pure-php:/app
+      - ./services/pure-php:/app
     restart: unless-stopped
     command: [ 'php', '-S', '0.0.0.0:80' ]
   swoole-php:
@@ -29,7 +29,7 @@ services:
     networks:
       - SpeedTest
     volumes:
-      - ./swoole-php:/app
+      - ./services/swoole-php:/app
     restart: unless-stopped
     command: [ 'php', 'index.php' ]
   react-php:
@@ -43,7 +43,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./react-php:/app
+      - ./services/react-php:/app
     restart: unless-stopped
     command: [ 'php', 'index.php' ]
   laravel:
@@ -57,7 +57,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./laravel:/app
+      - ./services/laravel:/app
     restart: unless-stopped
     command: [ 'php', 'artisan', 'serve', '--host=0.0.0.0', '--port=80' ]
   laravel-octane:
@@ -71,7 +71,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./laravel:/app
+      - ./services/laravel:/app
     restart: unless-stopped
     command: [ 'php', 'artisan', 'octane:start', '--host=0.0.0.0', '--port=80' ]
   yii:
@@ -85,7 +85,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./yii:/app
+      - ./services/yii:/app
     restart: unless-stopped
     command: [ 'php', 'yii', 'serve', '0.0.0.0', '--port=80' ]
   nodejs:
@@ -95,7 +95,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./nodejs:/app
+      - ./services/nodejs:/app
     restart: unless-stopped
     command: [ 'node', 'index.js' ]
     networks:
@@ -107,7 +107,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./go:/app
+      - ./services/go:/app
     restart: unless-stopped
     command: [ 'go', 'run', 'index.go' ]
     networks:
@@ -121,7 +121,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./flask:/app
+      - ./services/flask:/app
     restart: unless-stopped
     command: ['python', 'index.py']
     networks:
@@ -135,7 +135,7 @@ services:
     expose:
       - "80"
     volumes:
-      - ./fastapi:/app
+      - ./services/fastapi:/app
     restart: unless-stopped
     command: ['uvicorn', 'index:app',  '--reload', '--host', '0.0.0.0', '--port', '80']
     networks:

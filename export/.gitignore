@@ -1,0 +1,4 @@
+*
+!.gitignore
+!image-apache-bench-result.png
+!image-wrk-result.png
