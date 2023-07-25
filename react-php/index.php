@@ -10,7 +10,7 @@ $http = new HttpServer(function (ServerRequestInterface $request) {
     $parsedUrl = parse_url($request->getUri());
     $uri = trim($parsedUrl['path'], '/ ');
     if ($uri === 'hello-world') {
-        return new Response(200, ['Content-Type' => 'text/plain'], "Hello World!");
+        return new Response(200, ['Content-Type' => 'text/plain'], "Hello World");
     }
     return new Response(200, ['Content-Type' => 'text/plain'], "not found!");
 });

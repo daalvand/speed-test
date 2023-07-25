@@ -4,7 +4,7 @@ function route($path): string
 {
     $path = trim($path, '/ ');
     return match ($path) {
-        'hello-world'  => 'Hello World!',
+        'hello-world'  => 'Hello World',
         default        => '404 - Not Found',
     };
 }

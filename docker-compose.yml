@@ -112,6 +112,34 @@ services:
     command: [ 'go', 'run', 'index.go' ]
     networks:
       - SpeedTest
+  flask:
+    build:
+      context: .
+      dockerfile: PythonDockerfile
+    container_name: SpeedTestFlask
+    working_dir: /app
+    expose:
+      - "80"
+    volumes:
+      - ./flask:/app
+    restart: unless-stopped
+    command: ['python', 'index.py']
+    networks:
+      - SpeedTest
+  fastapi:
+    build:
+      context: .
+      dockerfile: PythonDockerfile
+    container_name: SpeedTestFastAPI
+    working_dir: /app
+    expose:
+      - "80"
+    volumes:
+      - ./fastapi:/app
+    restart: unless-stopped
+    command: ['uvicorn', 'index:app',  '--reload', '--host', '0.0.0.0', '--port', '80']
+    networks:
+      - SpeedTest
   ab:
     build:
       dockerfile: AlpineDockerfile

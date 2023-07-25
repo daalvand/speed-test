@@ -68,7 +68,7 @@ class SiteController extends Controller
 
     public function actionHelloWorld(): string
     {
-        return 'Hello Word!';
+        return 'Hello Word';
     }
 
     /**
