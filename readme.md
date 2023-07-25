@@ -11,8 +11,8 @@
 
 ### Apache Bench:
 
-![bar-graph.png](export/image-apache-bench-result.png)
+![bar-graph.png](export/ab.png)
 
 ### Wrk Result:
 
-![wrk-result.png](export/image-wrk-result.png)
+![wrk-result.png](export/wrk.png)

@@ -1,4 +1,5 @@
 *
 !.gitignore
-!image-apache-bench-result.png
-!image-wrk-result.png
+!ab.png
+!wrk.png
+!plt
