@@ -1,0 +1,27 @@
+FROM php:8.2-fpm-alpine
+
+WORKDIR /var/www/html
+
+ARG UID=1000
+ARG GID=$UID
+
+# https://github.com/gliderlabs/docker-alpine/issues/307#issuecomment-317469410
+RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/https\:\/\/alpine.global.ssl.fastly.net/g' /etc/apk/repositories
+
+# Install system dependencies and libraries
+RUN apk add --no-cache shadow libstdc++
+RUN groupmod -g $GID www-data
+RUN usermod -u $UID www-data
+
+# install extentions
+RUN apk add --no-cache ${PHPIZE_DEPS}
+RUN pecl install -D 'enable-sockets="no" enable-openssl="no" enable-http2="no" enable-mysqlnd="no" enable-swoole-json="no" enable-swoole-curl="no" enable-cares="no"' swoole
+RUN pecl install redis
+RUN docker-php-ext-enable swoole redis
+RUN apk del ${PHPIZE_DEPS}
+
+#install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN mkdir -p /var/www/.composer && chown $UID:$GID -R /var/www/.composer
+
+COPY www.conf /usr/local/etc/php-fpm.d/www.conf
