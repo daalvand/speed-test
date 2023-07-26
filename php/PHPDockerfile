@@ -17,3 +17,5 @@ RUN apt-get remove -y ${PHPIZE_DEPS}
 #install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN mkdir -p /var/www/.composer && chown $UID:$GID -R /var/www/.composer
+
+COPY www.conf /usr/local/etc/php-fpm.d/www.conf
