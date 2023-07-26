@@ -7,7 +7,7 @@ services:
   pure-php:
     build:
       context: .
-      dockerfile: PHPDockerfile
+      dockerfile: php/PHPDockerfile
     container_name: SpeedTestPurePHP
     working_dir: /app
     networks:
@@ -21,7 +21,7 @@ services:
   swoole-php:
     build:
       context: .
-      dockerfile: PHPDockerfile
+      dockerfile: php/PHPDockerfile
     container_name: SpeedTestSwoolePHP
     working_dir: /app
     expose:
@@ -35,7 +35,7 @@ services:
   react-php:
     build:
       context: .
-      dockerfile: PHPDockerfile
+      dockerfile: php/PHPDockerfile
     container_name: SpeedTestReactPHP
     working_dir: /app
     networks:
@@ -49,7 +49,7 @@ services:
   laravel:
     build:
       context: .
-      dockerfile: PHPDockerfile
+      dockerfile: php/PHPDockerfile
     container_name: SpeedTestLaravel
     working_dir: /app
     networks:
@@ -63,7 +63,7 @@ services:
   laravel-octane:
     build:
       context: .
-      dockerfile: PHPDockerfile
+      dockerfile: php/PHPDockerfile
     container_name: SpeedTestLaravelOctane
     working_dir: /app
     networks:
@@ -77,7 +77,7 @@ services:
   yii:
     build:
       context: .
-      dockerfile: PHPDockerfile
+      dockerfile: php/PHPDockerfile
     container_name: SpeedTestYii
     working_dir: /app
     networks:
@@ -88,6 +88,20 @@ services:
       - ./services/yii:/app
     restart: unless-stopped
     command: [ 'php', 'yii', 'serve', '0.0.0.0', '--port=80' ]
+  codeigniter:
+    build:
+      context: .
+      dockerfile: php/PHPDockerfile
+    container_name: SpeedTestCodeigniter
+    working_dir: /app
+    networks:
+      - SpeedTest
+    expose:
+      - "80"
+    volumes:
+      - ./services/codeigniter:/app
+    restart: unless-stopped
+    command: [ 'php', 'spark', 'serve', '--host', '0.0.0.0', '--port', '80' ]
   nodejs:
     image: node:18
     container_name: SpeedTestNodeJS
@@ -158,5 +172,15 @@ services:
       - SpeedTest
     entrypoint:
       - wrk
+    profiles:
+      - donotstart
+  hey:
+    build:
+      dockerfile: AlpineDockerfile
+    container_name: SpeedTestHEY
+    networks:
+      - SpeedTest
+    entrypoint:
+      - hey
     profiles:
       - donotstart

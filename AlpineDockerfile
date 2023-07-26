@@ -2,7 +2,7 @@
 FROM alpine:latest
 
 # Update package repositories and install required packages
-RUN apk update && apk add apache2-utils wrk
+RUN apk update && apk add apache2-utils wrk hey
 
 # Set the working directory
 WORKDIR /app

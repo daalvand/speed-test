@@ -1,13 +1,11 @@
 import argparse
 import pandas as pd
 from matplotlib import pyplot as plt
-from os.path import dirname, abspath
+from os.path import split
 
 
 def create_plot(csv_file):
-    c_dir = dirname(abspath(__file__))
-    path  = dirname(c_dir)+'/export'
-    data  = pd.read_csv(f'{path}/{csv_file}')
+    data  = pd.read_csv(csv_file)
     data.head()
     df = pd.DataFrame(data)
 
@@ -51,9 +49,10 @@ def create_plot(csv_file):
     # labels
     ax.set_xlabel('rps (requests/one sec)', fontweight='bold')
 
+    directory_path, file_name = split(csv_file)
     # Save Plot as PNG with dynamic name based on input CSV
-    file_name_without_extension = csv_file.split('.')[0]
-    plt.savefig(f'{path}/{file_name_without_extension}.png')
+    file_name_without_extension = file_name.split('.')[0]
+    plt.savefig(f'{directory_path}/{file_name_without_extension}.png')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Create a horizontal bar plot from a CSV file.')
