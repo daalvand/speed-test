@@ -1,9 +1,8 @@
 #!/bin/bash
 
 # Set default values for time limit and concurrency
-TYPE="${1:-ab}"
-TIME_LIMIT="${2:-10}"
-CONCURRENCY="${3:-100}"
+TIME_LIMIT="${1:-10}"
+CONCURRENCY="${2:-100}"
 
 DIR="$(dirname "$(dirname "$(readlink -f "$0")")")"
 
