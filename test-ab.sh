@@ -8,22 +8,7 @@ CONCURRENCY="${3:-100}"
 docker-compose down --remove-orphans
 
 # Build
-docker-compose build &&
-  docker-compose build hey &&
-  # Dependency installation
-  docker-compose run --rm nodejs npm install &&
-  docker-compose run --rm react-php composer install -o &&
-  docker-compose run --rm laravel cp .env.example .env &&
-  docker-compose run --rm laravel composer install -o &&
-  docker-compose run --rm laravel php artisan key:generate &&
-  docker-compose run --rm laravel php artisan optimize &&
-  docker-compose run --rm codeigniter composer install -o &&
-  docker-compose run --rm yii composer install -o &&
-  docker-compose run --rm flask python -m venv /app/venv &&
-  docker-compose run --rm flask pip install -r requirements.txt &&
-  docker-compose run --rm fastapi python -m venv /app/venv &&
-  docker-compose run --rm fastapi pip install -r requirements.txt &&
-  docker-compose up -d
+docker-compose build && docker-compose build ab && docker-compose up -d
 
 sleep 10
 

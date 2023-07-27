@@ -90,7 +90,7 @@ Update your vendor packages
     
 Run the installation triggers (creating cookie validation code)
 
-    docker-compose run --rm php composer install    
+    docker-compose run --rm php composer install -o --no-dev    
     
 Start the container
 

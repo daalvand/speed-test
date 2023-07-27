@@ -1,0 +1,14 @@
+FROM phpswoole/swoole:5.0.3-php8.2-alpine
+
+WORKDIR /app
+
+COPY . .
+
+RUN cp .env.example .env
+RUN composer install -o --no-dev
+RUN php artisan key:generate
+RUN php artisan optimize
+
+EXPOSE 80
+
+CMD [ "php", "artisan", "octane:start", "--host=0.0.0.0", "--port=80" ]

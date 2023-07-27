@@ -1,0 +1,14 @@
+*.log
+vendor/*
+node_modules/*
+venv/*
+
+**.git
+.idea
+**.gitignore
+**.gitattributes
+**.sass-cache
+*.env
+
+Dockerfile
+docker-compose.yml

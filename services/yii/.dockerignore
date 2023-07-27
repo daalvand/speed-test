@@ -1,0 +1,16 @@
+*.log
+*.Dockerfile
+Dockerfile
+docker
+docker-compose.yml
+deployment.yml
+.drone.yml
+.git/*
+tmp/*
+.cache/
+.sass-cache/
+node_modules/*
+!.gitkeep
+!.gitignore
+vendor/*
+web/assets/*

@@ -1,0 +1,13 @@
+*.log
+vendor/*
+node_modules/*
+
+**.git
+.idea
+**.gitignore
+**.gitattributes
+**.sass-cache
+*.env
+
+Dockerfile
+docker-compose.yml

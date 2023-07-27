@@ -19,7 +19,7 @@ writing we are running version 9.x. Support for this has been built into the
 via [Composer](https://getcomposer.org/) if you don't already have it installed globally.
 
 ```console
-> composer install
+> composer install -o --no-dev
 ```
 
 If running under macOS or Linux, you can create a symbolic link to make running tests a touch nicer.

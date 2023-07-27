@@ -5,139 +5,77 @@ networks:
     driver: bridge
 services:
   pure-php:
-    image: daalvand/php:8.2-swoole-fpm-alpine
+    image: daalvand/speed-test-pure-php
     container_name: SpeedTestPurePHP
-    working_dir: /app
     networks:
       - SpeedTest
-    expose:
-      - "80"
-    volumes:
-      - ./services/pure-php:/app
     restart: unless-stopped
-    command: [ 'php', '-S', '0.0.0.0:80' ]
   swoole-php:
-    image: daalvand/php:8.2-swoole-fpm-alpine
+    image: daalvand/speed-test-swoole-php
     container_name: SpeedTestSwoolePHP
-    working_dir: /app
-    expose:
-      - "80"
     networks:
       - SpeedTest
-    volumes:
-      - ./services/swoole-php:/app
     restart: unless-stopped
-    command: [ 'php', 'index.php' ]
   react-php:
-    image: daalvand/php:8.2-swoole-fpm-alpine
+    image: daalvand/speed-test-react-php
     container_name: SpeedTestReactPHP
     working_dir: /app
     networks:
       - SpeedTest
-    expose:
-      - "80"
-    volumes:
-      - ./services/react-php:/app
     restart: unless-stopped
-    command: [ 'php', 'index.php' ]
   laravel:
-    image: daalvand/php:8.2-swoole-fpm-alpine
+    image: daalvand/speed-test-laravel
     container_name: SpeedTestLaravel
-    working_dir: /app
     networks:
       - SpeedTest
-    expose:
-      - "80"
-    volumes:
-      - ./services/laravel:/app
     restart: unless-stopped
-    command: [ 'php', 'artisan', 'serve', '--host=0.0.0.0', '--port=80' ]
   laravel-octane:
-    image: daalvand/php:8.2-swoole-fpm-alpine
+    image: daalvand/speed-test-laravel-octane
     container_name: SpeedTestLaravelOctane
-    working_dir: /app
     networks:
       - SpeedTest
-    expose:
-      - "80"
-    volumes:
-      - ./services/laravel:/app
     restart: unless-stopped
-    command: [ 'php', 'artisan', 'octane:start', '--host=0.0.0.0', '--port=80' ]
   yii:
     image: daalvand/php:8.2-swoole-fpm-alpine
     container_name: SpeedTestYii
     working_dir: /app
     networks:
       - SpeedTest
-    expose:
-      - "80"
-    volumes:
-      - ./services/yii:/app
     restart: unless-stopped
-    command: [ 'php', 'yii', 'serve', '0.0.0.0', '--port=80' ]
   codeigniter:
-    image: daalvand/php:8.2-swoole-fpm-alpine
+    image: daalvand/speed-test-codeigniter
     container_name: SpeedTestCodeigniter
-    working_dir: /app
     networks:
       - SpeedTest
-    expose:
-      - "80"
-    volumes:
-      - ./services/codeigniter:/app
     restart: unless-stopped
-    command: [ 'php', 'spark', 'serve', '--host', '0.0.0.0', '--port', '80' ]
   nodejs:
-    image: node:18
+    image: daalvand/speed-test-node
     container_name: SpeedTestNodeJS
-    working_dir: /app
-    expose:
-      - "80"
-    volumes:
-      - ./services/nodejs:/app
     restart: unless-stopped
-    command: [ 'node', 'index.js' ]
     networks:
       - SpeedTest
   go:
-    image: golang:1.20.6
+    image: daalvand/speed-test-go
     container_name: SpeedTestGO
-    working_dir: /app
-    expose:
-      - "80"
-    volumes:
-      - ./services/go:/app
     restart: unless-stopped
-    command: [ 'go', 'run', 'index.go' ]
     networks:
       - SpeedTest
   flask:
-    image: daalvand/python:3.11-venv
+    image: daalvand/speed-test-flask
     container_name: SpeedTestFlask
     working_dir: /app
-    expose:
-      - "80"
-    volumes:
-      - ./services/flask:/app
     restart: unless-stopped
-    command: ['python', 'index.py']
     networks:
       - SpeedTest
   fastapi:
-    image: daalvand/python:3.11-venv
+    image: daalvand/speed-test-fastapi
     container_name: SpeedTestFastAPI
     working_dir: /app
-    expose:
-      - "80"
-    volumes:
-      - ./services/fastapi:/app
     restart: unless-stopped
-    command: ['uvicorn', 'index:app',  '--reload', '--host', '0.0.0.0', '--port', '80']
     networks:
       - SpeedTest
   ab:
-    image: daalvand/alpine:speed-test
+    image: daalvand/speed-test-base
     container_name: SpeedTestAB
     networks:
       - SpeedTest
@@ -146,7 +84,7 @@ services:
     profiles:
       - donotstart
   wrk:
-    image: daalvand/alpine:speed-test
+    image: daalvand/speed-test-base
     container_name: SpeedTestWRK
     networks:
       - SpeedTest
@@ -155,7 +93,7 @@ services:
     profiles:
       - donotstart
   hey:
-    image: daalvand/alpine:speed-test
+    image: daalvand/speed-test-base
     container_name: SpeedTestHEY
     networks:
       - SpeedTest
