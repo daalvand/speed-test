@@ -4,6 +4,10 @@
 CONCURRENCY="${1:-100}"
 TOTAL_COUNT="${2:-10000}"
 
+DIR="$(dirname "$(dirname "$(readlink -f "$0")")")"
+
+cd $DIR
+
 docker-compose down --remove-orphans
 
 # Build

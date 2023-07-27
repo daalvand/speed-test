@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR="$(dirname "$(readlink -f "$0")")"
+DIR="$(dirname "$(dirname "$(readlink -f "$0")")")"
 SERVICE_DIR="${DIR}/services"
 DOCKER_BUILDKIT=1
 
@@ -16,4 +16,4 @@ docker build -f "$SERVICE_DIR/go/Dockerfile" "$SERVICE_DIR/go" -t daalvand/speed
 docker build -f "$SERVICE_DIR/fastapi/Dockerfile" "$SERVICE_DIR/fastapi" -t daalvand/speed-test-fastapi:latest &&
 docker build -f "$SERVICE_DIR/flask/Dockerfile" "$SERVICE_DIR/flask" -t daalvand/speed-test-flask:latest &&
 docker build -f "$SERVICE_DIR/nodejs/Dockerfile" "$SERVICE_DIR/nodejs" -t daalvand/speed-test-nodejs:latest &&
-echo 'DONE!'
+echo 'BUILD DONE!'

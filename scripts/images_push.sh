@@ -13,4 +13,4 @@ docker push daalvand/speed-test-go:latest &&
 docker push daalvand/speed-test-fastapi:latest &&
 docker push daalvand/speed-test-flask:latest &&
 docker push daalvand/speed-test-nodejs:latest &&
-echo 'DONE!'
+echo 'PUSH DONE!'
