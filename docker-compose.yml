@@ -101,3 +101,10 @@ services:
       - hey
     profiles:
       - donotstart
+  plt:
+    image: daalvand/speed-test-plt
+    container_name: SpeedTestPLT
+    networks:
+      - SpeedTest
+    profiles:
+      - donotstart

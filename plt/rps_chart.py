@@ -1,11 +1,10 @@
-import argparse
 import pandas as pd
 from matplotlib import pyplot as plt
-from os.path import split
-
+import sys
+import io
 
 def create_plot(csv_file):
-    data  = pd.read_csv(csv_file)
+    data = read_csv_file(csv_file)
     data.head()
     df = pd.DataFrame(data)
 
@@ -49,14 +48,35 @@ def create_plot(csv_file):
     # labels
     ax.set_xlabel('rps (requests/one sec)', fontweight='bold')
 
-    directory_path, file_name = split(csv_file)
-    # Save Plot as PNG with dynamic name based on input CSV
-    file_name_without_extension = file_name.split('.')[0]
-    plt.savefig(f'{directory_path}/{file_name_without_extension}.png')
+    # Save the plot to an in-memory buffer
+    buffer = io.BytesIO()
+    plt.savefig(buffer, format='png')
+    buffer.seek(0)
+
+    # Retrieve the image data as bytes and return it
+    image_content = buffer.getvalue()
+
+    buffer.close()
+    return image_content  # Decode the bytes to a string before printing
+
+def read_csv_file(csv_file):
+    try:
+        return pd.read_csv(csv_file)
+    except FileNotFoundError:
+        try:
+            return pd.read_csv(io.StringIO(csv_file))
+        except pd.errors.ParserError:
+            raise InvalidCSVException("Invalid CSV file input")
+
+
+class InvalidCSVException(Exception):
+    pass
+
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Create a horizontal bar plot from a CSV file.')
-    parser.add_argument('csv_file', type=str, help='The CSV file to read data from')
-    args = parser.parse_args()
-
-    create_plot(args.csv_file)
+    if len(sys.argv) > 1:
+        csv_file_input = sys.argv[1]
+        sys.stdout.buffer.write(create_plot(csv_file_input))
+    else:
+        print("No CSV data provided.")
+        exit(1)

@@ -29,6 +29,7 @@ jobs:
           DOCKER_BUILDKIT=1
 
           docker buildx build -f "$DIR/Dockerfile" "$DIR" -t daalvand/speed-test-base:latest && 
+          docker buildx build -f "$DIR/plt/Dockerfile" "$DIR/plt" -t daalvand/speed-test-plt:latest && 
           docker buildx build -f "$SERVICE_DIR/pure-php/Dockerfile" "$SERVICE_DIR/pure-php" -t daalvand/speed-test-pure-php:latest &&
           docker buildx build -f "$SERVICE_DIR/react-php/Dockerfile" "$SERVICE_DIR/react-php" -t daalvand/speed-test-react-php:latest &&
           docker buildx build -f "$SERVICE_DIR/swoole-php/Dockerfile" "$SERVICE_DIR/swoole-php" -t daalvand/speed-test-swoole-php:latest &&
@@ -41,6 +42,7 @@ jobs:
           docker buildx build -f "$SERVICE_DIR/flask/Dockerfile" "$SERVICE_DIR/flask" -t daalvand/speed-test-flask:latest &&
           docker buildx build -f "$SERVICE_DIR/nodejs/Dockerfile" "$SERVICE_DIR/nodejs" -t daalvand/speed-test-nodejs:latest &&
           docker push daalvand/speed-test-base:latest &&
+          docker push daalvand/speed-test-plt:latest &&
           docker push daalvand/speed-test-pure-php:latest &&
           docker push daalvand/speed-test-react-php:latest &&
           docker push daalvand/speed-test-swoole-php:latest &&
