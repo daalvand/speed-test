@@ -1,15 +1,11 @@
-import pandas as pd
+import csv
 from matplotlib import pyplot as plt
 import sys
 import io
 
 def create_plot(csv_file):
-    data = read_csv_file(csv_file)
-    data.head()
-    df = pd.DataFrame(data)
 
-    services = list(df.iloc[:, 0])
-    values = list(df.iloc[:, 1])
+    services, values = read_csv_file(csv_file)
 
     # Figure Size
     fig, ax = plt.subplots(figsize=(16, 9))
@@ -60,14 +56,16 @@ def create_plot(csv_file):
     return image_content  # Decode the bytes to a string before printing
 
 def read_csv_file(csv_file):
-    try:
-        return pd.read_csv(csv_file)
-    except FileNotFoundError:
-        try:
-            return pd.read_csv(io.StringIO(csv_file))
-        except pd.errors.ParserError:
-            raise InvalidCSVException("Invalid CSV file input")
-
+    csv_file = io.StringIO(csv_file)
+    # Read the CSV data
+    csv_reader = csv.DictReader(csv_file)
+    # Extract the data from the CSV
+    services = []
+    values = []
+    for row in csv_reader:
+        services.append(row['service'])
+        values.append(float(row['rps']))
+    return services, values
 
 class InvalidCSVException(Exception):
     pass
