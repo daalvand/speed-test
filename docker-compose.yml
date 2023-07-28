@@ -19,7 +19,6 @@ services:
   react-php:
     image: daalvand/speed-test-react-php
     container_name: SpeedTestReactPHP
-    working_dir: /app
     networks:
       - SpeedTest
     restart: unless-stopped
@@ -38,7 +37,6 @@ services:
   yii:
     image: daalvand/php:8.2-swoole-fpm-alpine
     container_name: SpeedTestYii
-    working_dir: /app
     networks:
       - SpeedTest
     restart: unless-stopped
@@ -63,14 +61,12 @@ services:
   flask:
     image: daalvand/speed-test-flask
     container_name: SpeedTestFlask
-    working_dir: /app
     restart: unless-stopped
     networks:
       - SpeedTest
   fastapi:
     image: daalvand/speed-test-fastapi
     container_name: SpeedTestFastAPI
-    working_dir: /app
     restart: unless-stopped
     networks:
       - SpeedTest

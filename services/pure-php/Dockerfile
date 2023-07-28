@@ -1,9 +1,5 @@
-FROM php:8.2-fpm-alpine
+FROM richarvey/nginx-php-fpm
 
-WORKDIR /app
+WORKDIR "/var/www/html"
 
 COPY . .
-
-EXPOSE 80 9000
-
-CMD [ "php", "-S", "0.0.0.0:80" ]

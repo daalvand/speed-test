@@ -1,20 +1,12 @@
-FROM php:8.2-fpm-alpine
+FROM richarvey/nginx-php-fpm
 
-RUN apk update
+# Set the working directory in the container
+WORKDIR /var/www/html
 
-## install extentions
-RUN apk add --no-cache icu-dev
-RUN docker-php-ext-install intl
-
-WORKDIR /app
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
+# Copy your application files to the container
 COPY . .
 
-RUN composer install -o --no-dev
-
-EXPOSE 80 9000
-
-CMD [ "php", "spark", "serve", "--host", "0.0.0.0", "--port", "80" ]
-
+# Modify Nginx configuration to serve from the 'public' directory
+RUN sed -i -e "s|root /var/www/html;|root /var/www/html/public;|g" /etc/nginx/sites-available/default.conf \
+    && sed -i -e "s|root /var/www/html;|root /var/www/html/public;|g" /etc/nginx/sites-available/default-ssl.conf
 
