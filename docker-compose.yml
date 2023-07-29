@@ -70,31 +70,11 @@ services:
     restart: unless-stopped
     networks:
       - SpeedTest
-  ab:
+  base:
     image: daalvand/speed-test-base
-    container_name: SpeedTestAB
+    container_name: SpeedTestBase
     networks:
       - SpeedTest
-    entrypoint:
-      - ab
-    profiles:
-      - donotstart
-  wrk:
-    image: daalvand/speed-test-base
-    container_name: SpeedTestWRK
-    networks:
-      - SpeedTest
-    entrypoint:
-      - wrk
-    profiles:
-      - donotstart
-  hey:
-    image: daalvand/speed-test-base
-    container_name: SpeedTestHEY
-    networks:
-      - SpeedTest
-    entrypoint:
-      - hey
     profiles:
       - donotstart
   plt:

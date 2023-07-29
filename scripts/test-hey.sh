@@ -35,7 +35,7 @@ mkdir -p export/hey
 for service in "${services[@]}"; do
   echo "HEY Test For: ${service}..."
   file=${service}-hw-c-${CONCURRENCY}-n-${TOTAL_COUNT}.txt
-  docker-compose run --rm hey -n $TOTAL_COUNT -c $CONCURRENCY -m GET "http://${service}/hello-world" >"export/hey/${file}"
+  docker-compose run --rm base hey -n $TOTAL_COUNT -c $CONCURRENCY -m GET "http://${service}/hello-world" >"export/hey/${file}"
   docker-compose kill -s SIGKILL $service
 done
 
