@@ -1,4 +1,4 @@
-FROM phpswoole/swoole:5.0.3-php8.2-alpine
+FROM phpswoole/swoole:5.0.3-php8.2
 
 WORKDIR /app
 
