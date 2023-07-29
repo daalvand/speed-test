@@ -9,4 +9,6 @@ COPY . .
 
 RUN npm ci --omit=dev
 
+EXPOSE 80
+
 CMD ["node", "index.js"]
