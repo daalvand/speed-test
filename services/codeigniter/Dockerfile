@@ -1,5 +1,7 @@
 FROM richarvey/nginx-php-fpm
 
+ENV SKIP_COMPOSER=true
+
 # Set the working directory in the container
 WORKDIR /var/www/html
 
@@ -21,3 +23,5 @@ RUN sed -i 's/^pm.max_children = .*/pm.max_children = 1000/' /usr/local/etc/php-
     && sed -i 's/^request_terminate_timeout = .*/request_terminate_timeout = 30s/' /usr/local/etc/php-fpm.d/www.conf \
     && sed -i 's/^pm.process_idle_timeout = .*/pm.process_idle_timeout = 10s/' /usr/local/etc/php-fpm.d/www.conf \
     && sed -i 's/^pm.status_path = .*/pm.status_path = \/status/' /usr/local/etc/php-fpm.d/www.conf
+
+RUN composer install -o --no-dev

@@ -11,7 +11,7 @@ cd $DIR
 docker-compose down --remove-orphans
 
 # Build
-docker-compose build && docker-compose build hey && docker-compose up -d
+docker-compose build base && docker-compose up -d
 
 
 sleep 10

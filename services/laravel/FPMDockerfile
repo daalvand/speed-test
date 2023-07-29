@@ -1,5 +1,7 @@
 FROM richarvey/nginx-php-fpm
 
+ENV SKIP_COMPOSER=true
+
 # Set the working directory in the container
 WORKDIR /var/www/html
 
