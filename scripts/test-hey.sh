@@ -44,7 +44,7 @@ docker-compose down --remove-orphans
 csv_file="export/hey-summary-c-${CONCURRENCY}-n${TOTAL_COUNT}.csv"
 echo "service,rps" > $csv_file
 for service in "${services[@]}"; do
-  file=${service}-hw-c-${CONCURRENCY}-n${TOTAL_COUNT}.txt
+  file=${service}-hw-c-${CONCURRENCY}-n-${TOTAL_COUNT}.txt
   rps=$(grep -o 'Requests/sec:[[:space:]]*[0-9.]\+' export/hey/${file} | awk '{print $NF}')
   echo "${service},${rps}" >>$csv_file
 done

@@ -3,8 +3,8 @@ from matplotlib import pyplot as plt
 import sys
 import io
 
-def create_plot(csv_file):
 
+def create_plot(csv_file):
     services, values = read_csv_file(csv_file)
 
     # Figure Size
@@ -33,7 +33,8 @@ def create_plot(csv_file):
 
     # Add annotation to bars
     for i in ax.patches:
-        plt.text(i.get_width(), i.get_y() + 0.5, str(round((i.get_width()), 2)), fontsize=10, fontweight='bold', color='black')
+        plt.text(i.get_width(), i.get_y() + 0.5, str(round((i.get_width()), 2)), fontsize=10, fontweight='bold',
+                 color='black')
 
     # Add Plot Title
     ax.set_title('Performance Of Different Services', loc='left')
@@ -55,6 +56,7 @@ def create_plot(csv_file):
     buffer.close()
     return image_content  # Decode the bytes to a string before printing
 
+
 def read_csv_file(csv_file):
     csv_file = io.StringIO(csv_file)
     # Read the CSV data
@@ -66,6 +68,7 @@ def read_csv_file(csv_file):
         services.append(row['service'])
         values.append(float(row['rps']))
     return services, values
+
 
 class InvalidCSVException(Exception):
     pass
