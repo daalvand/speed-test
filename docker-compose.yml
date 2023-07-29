@@ -35,7 +35,7 @@ services:
       - SpeedTest
     restart: unless-stopped
   yii:
-    image: daalvand/php:8.2-swoole-fpm-alpine
+    image: daalvand/speed-test-yii
     container_name: SpeedTestYii
     networks:
       - SpeedTest
@@ -47,7 +47,7 @@ services:
       - SpeedTest
     restart: unless-stopped
   nodejs:
-    image: daalvand/speed-test-node
+    image: daalvand/speed-test-nodejs
     container_name: SpeedTestNodeJS
     restart: unless-stopped
     networks:
