@@ -2,6 +2,9 @@ FROM phpswoole/swoole:5.0.3-php8.2-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache icu-dev
+RUN docker-php-ext-install intl pcntl
+
 COPY . .
 
 RUN cp .env.example .env
