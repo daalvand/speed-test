@@ -35,6 +35,7 @@ for service in "${services[@]}"; do
   echo "AB Test For: ${service}..."
   file=${service}-hw-c-${CONCURRENCY}-t${TIME_LIMIT}s.txt
   docker-compose run --rm ab -k -c $CONCURRENCY -t $TIME_LIMIT -n 1000000 "http://${service}/hello-world" > "export/ab/${file}"
+  docker-compose kill -s SIGKILL $service
 done
 
 docker-compose down --remove-orphans

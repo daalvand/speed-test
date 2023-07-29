@@ -35,6 +35,7 @@ for service in "${services[@]}"; do
   echo "WRK Test For: ${service}..."
   file=${service}-hw-c-${CONCURRENCY}-t${TIME_LIMIT}s.txt
   docker-compose run --rm wrk -t4 -c $CONCURRENCY -d${TIME_LIMIT}s "http://${service}/hello-world" >"export/wrk/${file}"
+  docker-compose kill -s SIGKILL $service
 done
 
 docker-compose down --remove-orphans
