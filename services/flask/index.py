@@ -6,4 +6,7 @@ app = Flask(__name__)
 def helloWorld():
     return 'Hello World'
 
-app.run(host='0.0.0.0', port=80)
+if __name__ == '__main__':
+    # For development testing, you can use the Flask development server with:
+    app.run(host='0.0.0.0', port=80)
+    # For production, use Gunicorn to run the app:

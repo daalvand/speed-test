@@ -9,4 +9,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 80
 
-CMD ["python", "index.py"]
+CMD ["gunicorn", "-w", "9", "index:app", "-b", "0.0.0.0:80", "--worker-connections", "1000"]
